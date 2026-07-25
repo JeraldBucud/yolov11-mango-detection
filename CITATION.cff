@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Please cite this repository if you use it in academic work."
+title: "YOLOv11 Mango Detection"
+type: software
+authors:
+  - family-names: "Bucud"
+    given-names: "Jerald Christopher"
+repository-code: "https://github.com/JeraldBucud/yolov11-mango-detection"
+url: "https://github.com/JeraldBucud/yolov11-mango-detection"
+version: "1.0.0"
+date-released: "2026-07-26"
+keywords:
+  - computer vision
+  - object detection
+  - mango detection
+  - YOLOv11
+  - precision agriculture
+license: AGPL-3.0-only
