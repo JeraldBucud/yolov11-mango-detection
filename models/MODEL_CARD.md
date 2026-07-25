@@ -15,6 +15,14 @@
 - Training stopped: epoch 77
 - Best recorded epoch: 57
 
+## Checkpoint access
+
+The checkpoint is not stored directly in this repository. Download it from:
+
+https://drive.google.com/file/d/1foj6L949Kb_rbnAZJTuc2-E9Z3bt7rs3/view
+
+Place it at `models/best.pt` before running inference or evaluation.
+
 ## Evaluation data
 
 The final checkpoint was evaluated on a held-out test split containing:
@@ -57,6 +65,6 @@ the training dataset.
 
 ## Licensing
 
-The checkpoint was produced using Ultralytics YOLO and is included in an AGPL-3.0
-open-source repository. The training dataset is attributed separately under CC BY 4.0.
-See the repository `LICENSE` and `NOTICE.md`.
+The checkpoint was produced using Ultralytics YOLO. The repository is released under
+AGPL-3.0-only, and the training dataset is attributed separately under CC BY 4.0.
+See `LICENSE` and `NOTICE.md`.
