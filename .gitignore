@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Secrets and local settings
+.env
+.env.*
+credentials.json
+*.key
+
+# Dataset: keep only documentation and selected samples
+data/mangoyolo/
+data/**/*.cache
+
+# YOLO outputs
+runs/
+wandb/
+*.onnx
+*.engine
+
+# Operating systems and editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
