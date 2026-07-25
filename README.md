@@ -4,11 +4,7 @@
 [![Ultralytics](https://img.shields.io/badge/Ultralytics-YOLOv11-111F68.svg)](https://docs.ultralytics.com/)
 [![License](https://img.shields.io/badge/License-AGPL--3.0-green.svg)](LICENSE)
 
-A computer-vision portfolio project that fine-tunes **YOLOv11-n** to detect mangoes in orchard images. The repository includes a cleaned training notebook, the selected model checkpoint, evaluation metrics, training graphs, sample predictions, dataset attribution, and a reusable inference script.
-
-<p align="center">
-  <img src="results/predictions/prediction_01.jpg" alt="YOLOv11-n mango detections" width="620">
-</p>
+A computer-vision portfolio project that fine-tunes **YOLOv11-n** to detect mangoes in orchard images. The repository includes a cleaned training notebook, experiment configurations, evaluation metrics, dataset attribution, a model card, and a reusable inference script.
 
 ## Project highlights
 
@@ -31,7 +27,7 @@ A computer-vision portfolio project that fine-tunes **YOLOv11-n** to detect mang
 | Test images | 86 |
 | Test instances | 694 |
 
-The tuned model was selected using validation performance before the test set was evaluated.
+The tuned model was selected using validation performance before the held-out test set was evaluated.
 
 ## Experiment comparison
 
@@ -78,14 +74,11 @@ yolov11-mango-detection/
 ├── docs/
 │   └── README.md
 ├── models/
-│   ├── best.pt
 │   └── MODEL_CARD.md
 ├── notebooks/
 │   └── yolov11_mango_detection.ipynb
 ├── results/
-│   ├── graphs/
-│   ├── metrics/
-│   └── predictions/
+│   └── metrics/
 └── src/
     └── predict.py
 ```
@@ -96,12 +89,21 @@ yolov11-mango-detection/
 
 The dataset is not stored in the repository. Update `MANGO_DATASET_DIR` in the notebook or set it as an environment variable before running dataset-dependent cells.
 
+## Model checkpoint
+
+The selected `best.pt` checkpoint is approximately 5.5 MB. Download it from the project's shared file storage and place it at:
+
+```text
+models/best.pt
+```
+
+Checkpoint file: https://drive.google.com/file/d/1foj6L949Kb_rbnAZJTuc2-E9Z3bt7rs3/view
+
 ## Local installation
 
 ```bash
 git clone https://github.com/JeraldBucud/yolov11-mango-detection.git
 cd yolov11-mango-detection
-
 python -m venv .venv
 ```
 
@@ -123,7 +125,7 @@ pip install -r requirements.txt
 
 ## Run inference
 
-Predict on one image:
+After downloading `models/best.pt`, predict on one image:
 
 ```bash
 python src/predict.py --source path/to/mango_image.jpg
@@ -135,7 +137,7 @@ Predict on a folder:
 python src/predict.py --source path/to/images --conf 0.25
 ```
 
-By default, the script uses `models/best.pt` and saves annotated outputs under `runs/predict/`.
+Annotated outputs are saved under `runs/predict/` by default.
 
 ## Training configuration
 
@@ -153,25 +155,14 @@ By default, the script uses `models/best.pt` and saves annotated outputs under `
 
 The recorded training environment used Ultralytics 8.4.52, Python 3.12.13, PyTorch 2.10.0 with CUDA, and a Tesla T4 GPU. Hardware and package differences can change runtime and results.
 
-## Results
+## Results files
 
-### Training history
+The numerical results are included under [`results/metrics`](results/metrics):
 
-![Training history](results/graphs/results.png)
+- `final_test_results.csv`
+- `validation_comparison.csv`
 
-### Confusion matrix
-
-![Confusion matrix](results/graphs/confusion_matrix.png)
-
-### Precision-recall curve
-
-![Precision-recall curve](results/graphs/precision_recall_curve.png)
-
-### Prediction examples
-
-| Example 1 | Example 2 | Example 3 |
-|---|---|---|
-| ![](results/predictions/prediction_01.jpg) | ![](results/predictions/prediction_02.jpg) | ![](results/predictions/prediction_03.jpg) |
+Training graphs, the confusion matrix, prediction examples, and the checkpoint remain available in the prepared repository package and shared project storage.
 
 ## Limitations
 
