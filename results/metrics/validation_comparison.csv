@@ -1,0 +1,3 @@
+Experiment,Model,Purpose,Image size,Batch size,Epochs,Learning rate,Optimizer,mAP@0.5,mAP@0.5:0.95,Precision,Recall,Epochs planned,Best epoch,Training stopped at epoch
+YOLO Experiment 1,YOLOv11-n,Baseline,640,16,50,0.001,AdamW,0.988831301190472,0.7013585792423117,0.9621333917790412,0.951333051206094,,,
+YOLO Experiment 2,YOLOv11-n,Tuned,640,16,,0.0008,AdamW,0.99,0.703,0.966,0.956,100,57,77
