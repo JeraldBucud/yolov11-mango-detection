@@ -1,0 +1,2 @@
+Model,Selected experiment,Checkpoint,Dataset split,Image size,Batch size,Test images,Test instances,mAP@0.5,mAP@0.5:0.95,Precision,Recall
+YOLOv11-n,YOLO Experiment 2,best.pt,test,640,16,86,694,0.9893590933370581,0.7043447659748217,0.9364356907494105,0.9711815561959655
