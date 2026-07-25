@@ -1,0 +1,11 @@
+# Update this path after downloading the complete dataset.
+# It is interpreted relative to this YAML file in the cleaned notebook.
+path: ../data/mangoyolo
+
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 1
+names:
+  0: mango
