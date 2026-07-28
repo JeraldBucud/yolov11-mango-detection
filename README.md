@@ -1,12 +1,8 @@
 # YOLOv11 Mango Detection
 
-[![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
-[![Ultralytics](https://img.shields.io/badge/Ultralytics-YOLOv11-111F68.svg)](https://docs.ultralytics.com/)
-[![License](https://img.shields.io/badge/License-AGPL--3.0-green.svg)](LICENSE)
-
 A computer-vision project that fine-tunes **YOLOv11-n** to detect mangoes in orchard images. The repository provides the training and evaluation notebook, recorded metrics, graphs, sample predictions, dataset attribution, checkpoint-download instructions and a configurable inference script.
 
-**Case study:** https://jeraldbucud.com/yolov11-mango-detection-case-study.html
+**Technical case study:** [View the portfolio case study](https://jeraldbucud.com/yolov11-mango-detection-case-study.html)
 
 <p align="center">
   <img src="results/predictions/prediction_01.jpg" alt="YOLOv11-n mango detections" width="620">
