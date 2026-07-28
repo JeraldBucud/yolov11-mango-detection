@@ -4,7 +4,9 @@
 [![Ultralytics](https://img.shields.io/badge/Ultralytics-YOLOv11-111F68.svg)](https://docs.ultralytics.com/)
 [![License](https://img.shields.io/badge/License-AGPL--3.0-green.svg)](LICENSE)
 
-A computer-vision portfolio project that fine-tunes **YOLOv11-n** to detect mangoes in orchard images. The repository includes a cleaned training notebook, the selected model checkpoint, evaluation metrics, training graphs, sample predictions, dataset attribution, and a reusable inference script.
+A computer-vision project that fine-tunes **YOLOv11-n** to detect mangoes in orchard images. The repository provides the training and evaluation notebook, recorded metrics, graphs, sample predictions, dataset attribution, checkpoint-download instructions and a configurable inference script.
+
+**Case study:** https://jeraldbucud.com/yolov11-mango-detection-case-study.html
 
 <p align="center">
   <img src="results/predictions/prediction_01.jpg" alt="YOLOv11-n mango detections" width="620">
@@ -13,12 +15,12 @@ A computer-vision portfolio project that fine-tunes **YOLOv11-n** to detect mang
 ## Project highlights
 
 - Single-class object detection: `mango`
-- Fine-tuned YOLOv11-n using pretrained weights
-- Baseline and tuned experiments
+- Fine-tuned YOLOv11-n from pretrained weights
+- Baseline and tuned training configurations
 - Validation-based model selection
-- Final evaluation on a held-out test set
-- Reusable command-line inference script
-- Dataset and model licensing documented
+- Final evaluation on a held-out test split
+- Configurable command-line inference script
+- Dataset, model and repository licensing documented
 
 ## Final test results
 
@@ -31,7 +33,7 @@ A computer-vision portfolio project that fine-tunes **YOLOv11-n** to detect mang
 | Test images | 86 |
 | Test instances | 694 |
 
-The tuned model was selected using validation performance before the test set was evaluated.
+The tuned checkpoint was selected using validation performance before the held-out test split was evaluated.
 
 ## Experiment comparison
 
@@ -44,7 +46,7 @@ Experiment 2 reached its best recorded epoch at epoch 57 and was selected as the
 
 ## Dataset
 
-The project uses a single-class mango detection dataset with YOLO bounding-box annotations.
+The project uses a single-class mango-detection dataset with YOLO bounding-box annotations.
 
 | Split | Images |
 |---|---:|
@@ -59,7 +61,17 @@ Dataset source:
 - Licence: **CC BY 4.0**
 - Source page: https://universe.roboflow.com/weed-mapping/mango-detection-glzls
 
-The complete dataset is intentionally not committed to this repository. See [`data/README.md`](data/README.md) for setup and attribution instructions.
+The complete dataset is not committed to this repository. See [`data/README.md`](data/README.md) for setup and attribution instructions.
+
+## Checkpoint access
+
+The trained checkpoint is not stored directly in the repository. Download it using the link in [`models/MODEL_CARD.md`](models/MODEL_CARD.md), then place it at:
+
+```text
+models/best.pt
+```
+
+The checkpoint is required for inference and evaluation.
 
 ## Repository structure
 
@@ -78,7 +90,6 @@ yolov11-mango-detection/
 ├── docs/
 │   └── README.md
 ├── models/
-│   ├── best.pt
 │   └── MODEL_CARD.md
 ├── notebooks/
 │   └── yolov11_mango_detection.ipynb
@@ -94,14 +105,17 @@ yolov11-mango-detection/
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/JeraldBucud/yolov11-mango-detection/blob/main/notebooks/yolov11_mango_detection.ipynb)
 
-The dataset is not stored in the repository. Update `MANGO_DATASET_DIR` in the notebook or set it as an environment variable before running dataset-dependent cells.
+Before running dataset-dependent cells:
+
+1. Download the dataset separately.
+2. Set `MANGO_DATASET_DIR` in the notebook or as an environment variable.
+3. Download the selected checkpoint and place it at `models/best.pt` when running evaluation or inference.
 
 ## Local installation
 
 ```bash
 git clone https://github.com/JeraldBucud/yolov11-mango-detection.git
 cd yolov11-mango-detection
-
 python -m venv .venv
 ```
 
@@ -135,7 +149,7 @@ Predict on a folder:
 python src/predict.py --source path/to/images --conf 0.25
 ```
 
-By default, the script uses `models/best.pt` and saves annotated outputs under `runs/predict/`.
+By default, the script uses `models/best.pt` and saves annotated outputs under `runs/predict/`. Use `--help` to review the available source, weights, output, confidence, IoU and image-size options.
 
 ## Training configuration
 
@@ -151,7 +165,7 @@ By default, the script uses `models/best.pt` and saves annotated outputs under `
 | Best recorded epoch | 57 |
 | Class | mango |
 
-The recorded training environment used Ultralytics 8.4.52, Python 3.12.13, PyTorch 2.10.0 with CUDA, and a Tesla T4 GPU. Hardware and package differences can change runtime and results.
+The recorded training environment used Ultralytics 8.4.52, Python 3.12.13, PyTorch 2.10.0 with CUDA and a Tesla T4 GPU. Hardware and package differences can change runtime and results.
 
 ## Results
 
@@ -173,26 +187,25 @@ The recorded training environment used Ultralytics 8.4.52, Python 3.12.13, PyTor
 |---|---|---|
 | ![](results/predictions/prediction_01.jpg) | ![](results/predictions/prediction_02.jpg) | ![](results/predictions/prediction_03.jpg) |
 
-## Limitations
+## Current limitations
 
-- The dataset represents a limited set of orchards and capture conditions.
-- Occluded, clustered, small, and poorly illuminated mangoes remain challenging.
-- The model detects only one class and does not assess ripeness, variety, disease, or fruit quality.
-- Results were measured on one held-out test split and should not be treated as proof of production readiness.
-- Inference speed depends on hardware, software versions, image size, and deployment settings.
+- The dataset represents a limited range of orchards and capture conditions.
+- Occluded, clustered, small and poorly illuminated mangoes remain challenging.
+- The model detects one class and does not assess ripeness, variety, disease or fruit quality.
+- Results were measured on one held-out test split; external orchard validation has not yet been completed.
+- Inference speed and resource use have not yet been benchmarked on a defined target device.
 
-## Future improvements
+## Next steps
 
-- Test images from additional orchards, cultivars, seasons, and lighting conditions.
+- Test images from additional orchards, cultivars, seasons and lighting conditions.
 - Compare YOLOv11-n with larger YOLOv11 variants.
-- Add mango counting and fruit-load estimation.
-- Add ripeness, damage, or disease classes.
-- Deploy an image-upload demonstration with FastAPI or Django.
-- Benchmark on local GPUs and edge devices.
+- Evaluate image-level counting and fruit-load estimation against annotated ground truth.
+- Build an image-upload demonstration.
+- Benchmark latency, memory and throughput on realistic hardware.
 
 ## References
 
-- Koirala, A., Walsh, K. B., Wang, Z., & McCarthy, C. (2019). *Deep learning for real-time fruit detection and orchard fruit load estimation: Benchmarking of MangoYOLO*. Precision Agriculture, 20, 1107-1135. https://doi.org/10.1007/s11119-019-09642-0
+- Koirala, A., Walsh, K. B., Wang, Z., & McCarthy, C. (2019). *Deep learning for real-time fruit detection and orchard fruit load estimation: Benchmarking of MangoYOLO*. Precision Agriculture, 20, 1107–1135. https://doi.org/10.1007/s11119-019-09642-0
 - Redmon, J., Divvala, S., Girshick, R., & Farhadi, A. (2016). *You Only Look Once: Unified, Real-Time Object Detection*. CVPR.
 - Ultralytics. *Ultralytics YOLO documentation*. https://docs.ultralytics.com/
 
@@ -200,4 +213,4 @@ The recorded training environment used Ultralytics 8.4.52, Python 3.12.13, PyTor
 
 **Jerald Christopher Bucud**
 
-This project began as academic computer-vision work and was reorganised as a public portfolio repository. Personal student information and assessment-only material have been removed.
+This project began as academic computer-vision work. The public repository contains the cleaned implementation, documented results and licensing information, while personal student information and assessment-only material are excluded.

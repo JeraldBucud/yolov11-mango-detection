@@ -43,10 +43,10 @@ The final checkpoint was evaluated on a held-out test split containing:
 
 This model is intended for:
 
-- Portfolio demonstration
 - Education and research
-- Mango detection experiments
+- Mango-detection experiments
 - Prototype orchard-image analysis
+- Evaluation of image-level mango detection and counting workflows
 
 ## Out-of-scope use
 
@@ -55,13 +55,14 @@ This model should not be treated as a validated production system for:
 - Commercial crop forecasting
 - Safety-critical agricultural decisions
 - Autonomous harvesting without additional testing
-- Detection of fruit varieties, ripeness, damage, or disease
+- Detection of fruit varieties, ripeness, damage or disease
 
 ## Limitations
 
 Performance may decrease with new orchards, camera systems, cultivars, daytime imagery,
-severe occlusion, small mangoes, motion blur, or lighting conditions not represented in
-the training dataset.
+severe occlusion, small mangoes, motion blur or lighting conditions not represented in
+the training dataset. The model has not yet been benchmarked on a defined target device
+or validated against an independently collected external orchard dataset.
 
 ## Licensing
 
